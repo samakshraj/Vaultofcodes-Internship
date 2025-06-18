@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #5bfcbe;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .blog-card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .form-control, .btn {
+            border-radius: 8px;
+        }
+
+        .btn {
+            background-color: #6c63ff;
+            color: #fff;
+        }
+
+        .btn:hover {
+            background-color: #5548c8;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+<div class="header">
+<h1>Welcome to My Blog</h1>
+<p>Share your thoughts with the world</p>
+</div>
+<div class="mb-4">
+<h3>Add New Blog</h3>
+<input type="text" id="title" class="form-control mb-2" placeholder="Blog Title">
+<textarea id="content" class="form-control mb-2" rows="4" placeholder="Write your blog here..."></textarea>
+<button onclick="addBlog()" class="btn">Post Blog</button>
+</div>
+<h3>All Blogs</h3>
+<div id="blog-list"></div>
+</div>
+<script>
+const blogList = document.getElementById("blog-list");
+function addBlog() {
+const title = document.getElementById("title").value.trim();
+const content = document.getElementById("content").value.trim();
+if (!title || !content) {
+alert("Please fill out both fields.");
+return;
+}
+const blogCard = document.createElement("div");
+blogCard.className = "blog-card";
+blogCard.innerHTML = `
+<h4>${title}</h4>
+<p>${content}</p>
+<button class="btn btn-sm" onclick="this.parentElement.remove()">Delete</button>
+`;
+blogList.prepend(blogCard);
+document.getElementById("title").value = "";
+document.getElementById("content").value = "";
+}
+</script>
+</body>
+</html>
